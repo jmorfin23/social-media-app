@@ -6,6 +6,10 @@ import bodyParser from 'body-parser';
 import { HTMLTemplate } from './template'; 
 import { Helmet, HelmetProvider } from 'react-helmet-async' 
 import { StaticRouter } from 'react-router'; 
+import { Provider } from 'react-redux'; 
+import { createStore  } from 'redux'; 
+import { rootReducer } from './src/reducers'; 
+
 
 const PORT = process.env.PORT || 5000; 
 const app = express(); 
@@ -17,16 +21,25 @@ app.get('*', (req, res) => {
   const context = {}; 
   const helmetContext = {}; 
 
+  // Create a new Redux store instance
+  const store = createStore(rootReducer)
+
+  // Render the component to a string
   const component = ReactDOMServer.renderToString(
-    <StaticRouter location={req.url} context={context}>
-      <HelmetProvider context={helmetContext}>
-        <App />
-      </HelmetProvider>
-    </StaticRouter>
+    <Provider store={store}>
+      <StaticRouter location={req.url} context={context}>
+        <HelmetProvider context={helmetContext}>
+          <App />
+        </HelmetProvider>
+      </StaticRouter>
+    </Provider>
   );
   
+  // Get initial state from redux store
+  const preloadedState = store.getState(); 
+  
   const { helmet } = helmetContext; 
-  const html = HTMLTemplate(component, helmet); 
+  const html = HTMLTemplate(component, helmet, preloadedState); 
   res.send(`<!DOCTYPE html>${html}`);
 
 })

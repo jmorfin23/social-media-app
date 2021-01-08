@@ -1,7 +1,7 @@
 import React from 'react'; 
 import { Helmet } from 'react-helmet-async'; 
 
-export const HTMLTemplate = (html, helmet) => {
+export const HTMLTemplate = (html, helmet, preloadedState) => {
     return(
         `
         <html lang="en" dir="ltr">
@@ -12,7 +12,13 @@ export const HTMLTemplate = (html, helmet) => {
         </head>
         <body>
             <div id="root">${html}</div>
-
+            
+            <script>
+                window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(
+                    /</g,
+                    '\\u003c'
+                )}
+            </script>
             <script src="client_bundle.js"></script>
         </body>
         </html>

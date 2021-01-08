@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import './index.css'; 
 import { SampleComponent } from '../../components/sampleComponent'; 
 
-export const HomePage = () => {
+export const HomePage = props => {
     return(
         <div className="homepage">
             <Helmet>
@@ -14,3 +14,5 @@ export const HomePage = () => {
         </div>
     )
 }
+
+ 
