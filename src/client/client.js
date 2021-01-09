@@ -1,9 +1,10 @@
 import React from 'react'; 
 import ReactDOM from 'react-dom'; 
-import { App } from './App';
+import { Routes } from './routes';
 import { BrowserRouter } from 'react-router-dom'; 
 import { HelmetProvider } from 'react-helmet-async'; 
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'; 
 import { Provider } from 'react-redux'
 import { rootReducer } from './reducers';
 
@@ -15,14 +16,14 @@ const preloadedState = window.__PRELOADED_STATE__
 delete window.__PRELOADED_STATE__
 
 // Create Redux store with initial state
-const store = createStore(rootReducer, preloadedState); 
+const store = createStore(rootReducer, preloadedState, applyMiddleware(thunk)); 
 
 ReactDOM.hydrate(
     <React.StrictMode>
         <Provider store={store}>
             <HelmetProvider>
                 <BrowserRouter>
-                    <App /> 
+                    <Routes /> 
                 </BrowserRouter>
             </HelmetProvider>
         </Provider>

@@ -1,7 +1,7 @@
 import React from 'react'; 
 import { Helmet } from 'react-helmet-async'; 
 
-export const HTMLTemplate = (html, helmet, preloadedState) => {
+export default (html, helmet, preloadedState) => {
     return(
         `
         <html lang="en" dir="ltr">
