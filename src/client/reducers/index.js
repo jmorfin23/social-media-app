@@ -1,7 +1,11 @@
 import React from 'react'; 
 import { combineReducers } from 'redux';
-import { sampleReducer } from './sample-reducer.js'; 
+import userReducer from './users'; 
+import authReducer from './authReducer'; 
+import adminReducer from './adminsListReducer'; 
 
-export const rootReducer = combineReducers({
-    sample: sampleReducer
-})
+export default combineReducers({
+    users: userReducer, 
+    auth: authReducer, 
+    admins: adminReducer
+}); 

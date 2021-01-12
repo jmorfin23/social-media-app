@@ -1,18 +1,21 @@
 import React from 'react'; 
-import { Helmet } from 'react-helmet-async'; 
 import './index.css'; 
-import { SampleComponent } from '../../components/sampleComponent'; 
+import { Helmet } from 'react-helmet-async'; 
+import { Link } from 'react-router-dom'; 
 
-export const HomePage = props => {
+const HomePage = props => {
     return(
         <div className="homepage">
             <Helmet>
                 <title>Home Page</title>
             </Helmet>
             <h1>Home Page</h1>
-            <SampleComponent /> 
         </div>
     )
+}
+
+export default {
+    component: HomePage,
 }
 
  

@@ -3,7 +3,7 @@ const webpackNodeExternals = require('webpack-node-externals'); // ** Ignore /no
 
 module.exports = {
     target: 'node',
-    entry: './server.js',
+    entry: './src/server.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: "server_bundle.js"
