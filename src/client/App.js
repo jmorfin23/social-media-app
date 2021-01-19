@@ -3,14 +3,16 @@ import { renderRoutes } from 'react-router-config';
 import { fetchCurrentUser } from './actions'; 
 import Header from './components/header'; 
 
-export default {
-   component: ({ route }) => {
+const App = ({ route }) => {
     return(
         <div>
             <Header /> 
             {renderRoutes(route.routes)}
         </div>
     )
-    }, 
-    loadData: ({ dispatch }) => dispatch(fetchCurrentUser())
 }; 
+
+export default {
+    component: App,
+    loadData: ({ dispatch }) => dispatch(fetchCurrentUser())
+}

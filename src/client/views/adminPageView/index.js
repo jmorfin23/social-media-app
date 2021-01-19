@@ -36,7 +36,4 @@ class AdminPageView extends Component {
 
 const mapStateToProps = ({ admins }) => ({ admins }); 
 
-export default {
-    component: connect(mapStateToProps, { fetchAdminsList })(RequireAuth(AdminPageView)), 
-    loadData: ({ dispatch }) => dispatch(fetchAdminsList())
-}
+export default connect(mapStateToProps, { fetchAdminsList })(RequireAuth(AdminPageView)); 

@@ -1,29 +1,39 @@
 import React from 'react'; 
-import HomePage from './views/homePageView'; 
-import AboutPage from './views/aboutPageView'; 
-import NotFoundPage from './components/not-found'; 
 import App from './App'; 
-import AdminPageView from './views/adminPageView';
+import loadable from '@loadable/component';
+
+const HomePage = loadable(() => import('./views/homePageView')); 
+const AboutPage = loadable(() => import('./views/aboutPageView'));
+const NotFoundPage = loadable(() => import('./components/not-found')); 
+const AdminPageView = loadable(() => import('./views/adminPageView'));
+
+// Must load actions separately due to incompatibility with @loadable/component
+import loadAdminData from './views/adminPageView/load-data'; 
+import loadAboutData from './views/aboutPageView/load-data';  
+
+
 
 export default [
     {
         ...App, 
         routes: [
             {
-                ...HomePage, 
+                component: HomePage, 
                 path: '/', 
                 exact: true
             }, 
             {
-                ...AboutPage, 
+                component: AboutPage, 
+                loadData: loadAboutData,
                 path: '/about', 
             },
             {
-                ...AdminPageView,
+                component: AdminPageView,
+                loadData: loadAdminData,
                 path: '/admins'
             },
             {
-                ...NotFoundPage, 
+                component: NotFoundPage, 
                 path: ""
             }
         ]

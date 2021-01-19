@@ -1,6 +1,5 @@
-import React from 'react';
-import 'core-js';
 import 'regenerator-runtime/runtime';
+import React from 'react';
 import express from 'express';
 import bodyParser from 'body-parser'; 
 import createStore from './helpers/createStore'; 
@@ -24,7 +23,6 @@ app.use(express.static("dist/public"));
 
 app.get('*', (req, res) => {
   const store = createStore(req); 
-  
   // ___ Find all data needed to be loaded ___ 
 
   // matchRoutes returns an array of components about to be rendered
@@ -38,12 +36,12 @@ app.get('*', (req, res) => {
       }); 
     }; 
   }); 
-  
+
   // Render page when all promises resolve
   Promise.all(promises).then(() => {
     const context = {}; 
     const content = renderer(req, store, context); 
-    
+
     if (context.url) {
       return res.redirect(301, context.url); 
     }

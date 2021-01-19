@@ -1,16 +1,16 @@
+import 'regenerator-runtime/runtime';
 import React from 'react'; 
 import ReactDOM from 'react-dom'; 
-import 'core-js';
-import 'regenerator-runtime/runtime';
 import Routes from './routes';
 import { BrowserRouter } from 'react-router-dom'; 
 import { HelmetProvider } from 'react-helmet-async'; 
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'; 
-import { Provider } from 'react-redux'
+import { Provider } from 'react-redux';
 import reducers from './reducers';
-import { renderRoutes } from 'react-router-config'
+import { renderRoutes } from 'react-router-config'; 
 import axios from 'axios'; 
+import { loadableReady } from '@loadable/component';
 
 const axiosInstance = axios.create({
     baseURL: '/api'
@@ -25,16 +25,18 @@ delete window.__PRELOADED_STATE__
 // Create Redux store with initial state
 const store = createStore(reducers, preloadedState, applyMiddleware(thunk.withExtraArgument(axiosInstance))); 
 
-ReactDOM.hydrate(
-    <React.StrictMode>
-        <Provider store={store}>
-            <HelmetProvider>
-                <BrowserRouter>
-                    <div>{renderRoutes(Routes)}</div>
-                </BrowserRouter>
-            </HelmetProvider>
-        </Provider>
-    </React.StrictMode>, 
-    document.querySelector('#root')
-)
+loadableReady(() => {
+    ReactDOM.hydrate(
+        <React.StrictMode>
+            <Provider store={store}>
+                <HelmetProvider>
+                    <BrowserRouter>
+                        <div>{renderRoutes(Routes)}</div>
+                    </BrowserRouter>
+                </HelmetProvider>
+            </Provider>
+        </React.StrictMode>, 
+        document.querySelector('#root')
+    )
+}); 
 

@@ -3,28 +3,37 @@ import ReactDOMServer from 'react-dom/server';
 import Routes from '../client/routes';
 import HTMLTemplate from './createHTMLTemplate'; 
 import { HelmetProvider } from 'react-helmet-async' 
-import { StaticRouter } from 'react-router'; 
+import { Route, StaticRouter } from 'react-router'; 
 import { Provider } from 'react-redux'; 
 import { renderRoutes } from 'react-router-config'
+import { ChunkExtractor } from '@loadable/server'; 
+import path from 'path'; 
+import { render } from 'react-dom';
 
 export default (req, store, context) => {
     const helmetContext = {}
-    // Some logic to load and initialize data into the store 
 
-    // Render the component to a string
+    const statsFile = path.resolve('./dist/public/loadable-stats.json');
+
+    const webextractor = new ChunkExtractor({ statsFile }); 
+
+    const app = webextractor.collectChunks(renderRoutes(Routes)); 
+
     const component = ReactDOMServer.renderToString(
-        <Provider store={store}>
-            <StaticRouter location={req.path} context={context}>
-                <HelmetProvider context={helmetContext}>
-                    <div>{renderRoutes(Routes)}</div>
-                </HelmetProvider>
-            </StaticRouter>
-        </Provider>
-    );
-  
+            <Provider store={store}>
+                <StaticRouter location={req.path} context={context}>
+                    <HelmetProvider context={helmetContext}>
+                            <div>{app}</div>
+                    </HelmetProvider>
+                </StaticRouter>
+            </Provider>
+    ); 
+        
+    const scripts = webextractor.getScriptTags({ async: false }) 
+    
     // Get initial state from redux store
     const preloadedState = store.getState(); 
     
     const { helmet } = helmetContext; 
-    return `<!DOCTYPE html>${HTMLTemplate(component, helmet, preloadedState)}`
+    return `<!DOCTYPE html>${HTMLTemplate(component, helmet, preloadedState, scripts)}`
 }

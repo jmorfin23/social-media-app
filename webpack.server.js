@@ -6,7 +6,8 @@ module.exports = {
     entry: './src/server.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: "server_bundle.js"
+        filename: "[name]_bundle.js",
+        chunkFilename: "[name]_bundle.js"
     },
     module: {
         rules: [

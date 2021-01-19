@@ -40,7 +40,4 @@ class AboutPage extends Component {
 
 const mapStateToProps = (state) => ({ users: state.users }); 
 
-export default {
-    loadData: ({ dispatch }) => dispatch(fetchUsers()), 
-    component: connect(mapStateToProps, { fetchUsers })(AboutPage), 
-}
+export default connect(mapStateToProps, { fetchUsers })(AboutPage); 

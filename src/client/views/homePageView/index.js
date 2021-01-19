@@ -1,7 +1,6 @@
 import React from 'react'; 
 import './index.css'; 
 import { Helmet } from 'react-helmet-async'; 
-import { Link } from 'react-router-dom'; 
 
 const HomePage = props => {
     return(
@@ -12,10 +11,8 @@ const HomePage = props => {
             <h1>Home Page</h1>
         </div>
     )
-}
+};
 
-export default {
-    component: HomePage,
-}
+export default HomePage; 
 
  

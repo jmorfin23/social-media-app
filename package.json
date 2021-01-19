@@ -5,6 +5,8 @@
   "private": true,
   "license": "MIT",
   "dependencies": {
+    "@loadable/component": "^5.14.1",
+    "@loadable/server": "^5.14.0",
     "axios": "^0.21.1",
     "babel-polyfill": "^6.26.0",
     "body-parser": "^1.19.0",
@@ -23,7 +25,7 @@
   "scripts": {
     "webpack:client": "webpack --mode=development --config webpack.client.js --watch",
     "webpack:server": "webpack --mode=development --config webpack.server.js --watch",
-    "webpack:start": "nodemon --watch dist --exec node dist/server_bundle.js",
+    "webpack:start": "nodemon --watch dist --exec node dist/main_bundle.js",
     "dev": "npm-run-all --parallel webpack:*",
     "build": "webpack --config webpack.client.js && webpack --config webpack.server.js"
   },
@@ -32,6 +34,8 @@
     "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@babel/preset-env": "7.10.4",
     "@babel/preset-react": "7.10.4",
+    "@loadable/babel-plugin": "^5.13.2",
+    "@loadable/webpack-plugin": "^5.14.0",
     "babel-loader": "8.1.0",
     "core-js": "^3.8.2",
     "css-loader": "^5.0.1",

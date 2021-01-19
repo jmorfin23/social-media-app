@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /Users/jonathanmorfin/.yarn/bin/yarn.js add serialize-javavscript
+  /usr/local/bin/node /Users/jonathanmorfin/.yarn/bin/yarn.js add @loadable/components
 
 PATH: 
   /Users/jonathanmorfin/Library/Python/3.8/bin:/Library/Frameworks/Python.framework/Versions/3.8/bin:/Library/Frameworks/Python.framework/Versions/3.8/bin:/Users/jonathanmorfin/.yarn/bin:/Users/jonathanmorfin/.config/yarn/global/node_modules/.bin:/anaconda3/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:/opt/X11/bin:~/.dotnet/tools
@@ -14,7 +14,7 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/serialize-javavscript: Not found
+  Error: https://registry.yarnpkg.com/@loadable%2fcomponents: Not found
       at Request.params.callback [as _callback] (/Users/jonathanmorfin/.yarn/lib/cli.js:66988:18)
       at Request.self.callback (/Users/jonathanmorfin/.yarn/lib/cli.js:140749:22)
       at Request.emit (events.js:203:13)
@@ -34,10 +34,12 @@ npm manifest:
     "private": true,
     "license": "MIT",
     "dependencies": {
+      "@loadable/server": "^5.14.0",
       "axios": "^0.21.1",
       "babel-polyfill": "^6.26.0",
       "body-parser": "^1.19.0",
       "express": "^4.17.1",
+      "express-http-proxy": "^1.6.2",
       "react": "^17.0.1",
       "react-dom": "^17.0.1",
       "react-helmet-async": "^1.0.7",
@@ -57,8 +59,11 @@ npm manifest:
     },
     "devDependencies": {
       "@babel/core": "7.10.4",
+      "@babel/plugin-proposal-class-properties": "^7.12.1",
       "@babel/preset-env": "7.10.4",
       "@babel/preset-react": "7.10.4",
+      "@loadable/babel-plugin": "^5.13.2",
+      "@loadable/webpack-plugin": "^5.14.0",
       "babel-loader": "8.1.0",
       "core-js": "^3.8.2",
       "css-loader": "^5.0.1",
@@ -340,7 +345,7 @@ Lockfile:
       "@babel/helper-remap-async-to-generator" "^7.12.1"
       "@babel/plugin-syntax-async-generators" "^7.8.0"
   
-  "@babel/plugin-proposal-class-properties@^7.10.4":
+  "@babel/plugin-proposal-class-properties@^7.10.4", "@babel/plugin-proposal-class-properties@^7.12.1":
     version "7.12.1"
     resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-class-properties/-/plugin-proposal-class-properties-7.12.1.tgz#a082ff541f2a29a4821065b8add9346c0c16e5de"
     integrity sha512-cKp3dlQsFsEs5CWKnN7BnSHOd0EOW8EKpEjkoz1pO2E5KzIDNV9Ros1b0CnmbVgAGXJubOYVBOGCT1OmJwOI7w==
@@ -436,7 +441,7 @@ Lockfile:
     dependencies:
       "@babel/helper-plugin-utils" "^7.10.4"
   
-  "@babel/plugin-syntax-dynamic-import@^7.8.0":
+  "@babel/plugin-syntax-dynamic-import@^7.7.4", "@babel/plugin-syntax-dynamic-import@^7.8.0":
     version "7.8.3"
     resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-dynamic-import/-/plugin-syntax-dynamic-import-7.8.3.tgz#62bf98b2da3cd21d626154fc96ee5b3cb68eacb3"
     integrity sha512-5gdGbFon+PszYzqs83S3E5mpi7/y/8M9eC90MRTZfduQOYW76ig6SOSPNe41IG5LoP3FGBn2N0RjVDSQiS94kQ==
@@ -928,6 +933,27 @@ Lockfile:
       "@babel/helper-validator-identifier" "^7.12.11"
       lodash "^4.17.19"
       to-fast-properties "^2.0.0"
+  
+  "@loadable/babel-plugin@^5.13.2":
+    version "5.13.2"
+    resolved "https://registry.yarnpkg.com/@loadable/babel-plugin/-/babel-plugin-5.13.2.tgz#373cddc64ee5437814f7dca1c1b6a7b2c1665a9f"
+    integrity sha512-vSZUVeTH1S1sDbk8Tzft0plZSkN7W4zmVR5w/Bmy4UmvBiu9lin7ztrDpoUTUzxpoups+OJbTc/OosvN0aMXWg==
+    dependencies:
+      "@babel/plugin-syntax-dynamic-import" "^7.7.4"
+  
+  "@loadable/server@^5.14.0":
+    version "5.14.0"
+    resolved "https://registry.yarnpkg.com/@loadable/server/-/server-5.14.0.tgz#8aa83166aaad7401a14d8a1b04a7e1cc169ca6c4"
+    integrity sha512-oiZiHzUdkOsDzZNXU6fsZ7U0W3+nWZRljVCFCeR8CZSXEKUfXAllUf8tx5G385q7vapAQpXM7U8EzgDns3Q4vQ==
+    dependencies:
+      lodash "^4.17.15"
+  
+  "@loadable/webpack-plugin@^5.14.0":
+    version "5.14.0"
+    resolved "https://registry.yarnpkg.com/@loadable/webpack-plugin/-/webpack-plugin-5.14.0.tgz#656cb298c4b30d3b93cfe6ebf227d9709685f357"
+    integrity sha512-md9Nm6o+OjWJH6RgHcYsbko36YDKG2zuM19rFYkQsktdfq+JnbwOCp3hVhZM7L8V1M4MP3uJfmxKh6QGOnk4+w==
+    dependencies:
+      make-dir "^3.0.2"
   
   "@sindresorhus/is@^0.14.0":
     version "0.14.0"
@@ -2053,7 +2079,7 @@ Lockfile:
     dependencies:
       ms "2.0.0"
   
-  debug@^3.2.6:
+  debug@^3.0.1, debug@^3.2.6:
     version "3.2.7"
     resolved "https://registry.yarnpkg.com/debug/-/debug-3.2.7.tgz#72580b7e9145fb39b6676f9c5e5fb100b934179a"
     integrity sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==
@@ -2340,6 +2366,11 @@ Lockfile:
       is-date-object "^1.0.1"
       is-symbol "^1.0.2"
   
+  es6-promise@^4.1.1:
+    version "4.2.8"
+    resolved "https://registry.yarnpkg.com/es6-promise/-/es6-promise-4.2.8.tgz#4eb21594c972bc40553d276e510539143db53e0a"
+    integrity sha512-HJDGx5daxeIvxdBxvG2cb9g4tEvwIk3i8+nhX0yGrYmZUzbkdg8QbDevheDB8gd0//uPj4c1EQua8Q+MViT0/w==
+  
   escalade@^3.1.1:
     version "3.1.1"
     resolved "https://registry.yarnpkg.com/escalade/-/escalade-3.1.1.tgz#d8cfdc7000965c5a0174b4a82eaa5c0552742e40"
@@ -2427,6 +2458,15 @@ Lockfile:
     integrity sha1-l+gBqgUt8CRU3kawK/YhZCzchQI=
     dependencies:
       homedir-polyfill "^1.0.1"
+  
+  express-http-proxy@^1.6.2:
+    version "1.6.2"
+    resolved "https://registry.yarnpkg.com/express-http-proxy/-/express-http-proxy-1.6.2.tgz#e87152e45958cee4b91da2fdaa20a1ffd581204a"
+    integrity sha512-soP7UXySFdLbeeMYL1foBkEoZj6HELq9BDAOCr1sLRpqjPaFruN5o6+bZeC+7U4USWIl4JMKEiIvTeKJ2WQdlQ==
+    dependencies:
+      debug "^3.0.1"
+      es6-promise "^4.1.1"
+      raw-body "^2.3.0"
   
   express@^4.17.1:
     version "4.17.1"
@@ -2956,7 +2996,7 @@ Lockfile:
       statuses ">= 1.5.0 < 2"
       toidentifier "1.0.0"
   
-  http-errors@~1.7.2:
+  http-errors@1.7.3, http-errors@~1.7.2:
     version "1.7.3"
     resolved "https://registry.yarnpkg.com/http-errors/-/http-errors-1.7.3.tgz#6c619e4f9c60308c38519498c14fbb10aacebb06"
     integrity sha512-ZTTX0MWrsQ2ZAhA1cejAwDLycFsd7I7nVtnkT3Ol0aqodaKW+0CTZDQ1uBv5whptCnc8e8HeRRJxRs0kmm/Qfw==
@@ -3460,7 +3500,7 @@ Lockfile:
       p-locate "^3.0.0"
       path-exists "^3.0.0"
   
-  lodash@^4.17.13, lodash@^4.17.19, lodash@^4.17.20:
+  lodash@^4.17.13, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.20:
     version "4.17.20"
     resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
     integrity sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==
@@ -3511,7 +3551,7 @@ Lockfile:
       pify "^4.0.1"
       semver "^5.6.0"
   
-  make-dir@^3.0.0:
+  make-dir@^3.0.0, make-dir@^3.0.2:
     version "3.1.0"
     resolved "https://registry.yarnpkg.com/make-dir/-/make-dir-3.1.0.tgz#415e967046b3a7f1d185277d84aa58203726a13f"
     integrity sha512-g3FeP20LNwhALb/6Cz6Dd4F2ngze0jz7tbzrD2wAV+o9FeNHe4rL+yK2md0J/fiSf1sa1ADhXqi5+oVwOM/eGw==
@@ -4352,6 +4392,16 @@ Lockfile:
     dependencies:
       bytes "3.1.0"
       http-errors "1.7.2"
+      iconv-lite "0.4.24"
+      unpipe "1.0.0"
+  
+  raw-body@^2.3.0:
+    version "2.4.1"
+    resolved "https://registry.yarnpkg.com/raw-body/-/raw-body-2.4.1.tgz#30ac82f98bb5ae8c152e67149dac8d55153b168c"
+    integrity sha512-9WmIKF6mkvA0SLmA2Knm9+qj89e+j1zqgyn8aXGd7+nAduPoqgI9lO57SAZNn/Byzo5P7JhXTyg9PzaJbH73bA==
+    dependencies:
+      bytes "3.1.0"
+      http-errors "1.7.3"
       iconv-lite "0.4.24"
       unpipe "1.0.0"
   
