@@ -28,12 +28,15 @@ export default (req, store, context) => {
                 </StaticRouter>
             </Provider>
     ); 
-        
-    const scripts = webextractor.getScriptTags({ async: false }) 
     
+    // Collect scripts 
+    const scripts = webextractor.getScriptTags({ async: false }) 
+    // Collect styles 
+    const styleTags = webextractor.getStyleTags(); 
+
     // Get initial state from redux store
     const preloadedState = store.getState(); 
     
     const { helmet } = helmetContext; 
-    return `<!DOCTYPE html>${HTMLTemplate(component, helmet, preloadedState, scripts)}`
+    return `<!DOCTYPE html>${HTMLTemplate(component, helmet, preloadedState, scripts, styleTags)}`
 }

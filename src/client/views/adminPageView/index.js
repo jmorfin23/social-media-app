@@ -37,3 +37,4 @@ class AdminPageView extends Component {
 const mapStateToProps = ({ admins }) => ({ admins }); 
 
 export default connect(mapStateToProps, { fetchAdminsList })(RequireAuth(AdminPageView)); 
+

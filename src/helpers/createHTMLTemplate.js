@@ -1,7 +1,7 @@
 import React from 'react'; 
 import { Helmet } from 'react-helmet-async'; 
 
-export default (html, helmet, preloadedState, scripts) => {
+export default (html, helmet, preloadedState, scripts, styleTags) => {
     return(
         `
         <html lang="en" dir="ltr">
@@ -9,6 +9,8 @@ export default (html, helmet, preloadedState, scripts) => {
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             ${helmet.title.toString()}
+
+            ${styleTags}
         </head>
             <body>
                 <div id="root">${html}</div>

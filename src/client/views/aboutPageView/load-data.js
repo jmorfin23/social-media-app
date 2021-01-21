@@ -1,3 +1,3 @@
 import { fetchUsers } from '../../actions'; 
 
-export default ({ dispatch }) => dispatch(fetchUsers()); 
+export const loadAboutData = ({ dispatch }) => dispatch(fetchUsers()); 

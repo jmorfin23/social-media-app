@@ -8,9 +8,8 @@ const NotFoundPage = loadable(() => import('./components/not-found'));
 const AdminPageView = loadable(() => import('./views/adminPageView'));
 
 // Must load actions separately due to incompatibility with @loadable/component
-import loadAdminData from './views/adminPageView/load-data'; 
-import loadAboutData from './views/aboutPageView/load-data';  
-
+import { loadAdminData } from './views/adminPageView/load-data'; 
+import { loadAboutData } from './views/aboutPageView/load-data';  
 
 
 export default [

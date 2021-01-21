@@ -1,3 +1,3 @@
 import { fetchAdminsList } from '../../actions'; 
 
-export default ({ dispatch }) => dispatch(fetchAdminsList())
+export const loadAdminData = ({ dispatch }) => dispatch(fetchAdminsList())
