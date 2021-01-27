@@ -1,0 +1,54 @@
+/*   This is the main css file   */ 
+
+body {
+    margin: 0!important; 
+    font-family: sans-serif;
+    font-style: normal; 
+    letter-spacing: 0;
+    text-rendering: optimizeLegibility;
+}
+
+* {
+    margin: 0; 
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*     colors     */
+:root {
+    --green: #54B689;
+    --white: #fff; 
+    --black: #000; 
+    --dark-blue: rgb(50, 53, 80); 
+    --light-dark-blue: rgba(50, 53, 80, 0.3); 
+    --shaded-white: #fafafa;
+}
+
+/*    Padding    */ 
+.pad-1 {
+    padding: 1rem; 
+}
+.pad-2 {
+    padding: 2rem; 
+}
+
+
+
+/*    Margin   */ 
+.mar-1 {
+    margin: 1rem;
+}
+
+.marlr-1 {
+    margin: 0 1rem; 
+}
+
+
+
+/*     font weight      */
+.fw-200 {
+    font-weight: 200;
+}
+.fw-300 {
+    font-weight: 300;
+}

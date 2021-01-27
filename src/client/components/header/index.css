@@ -1,0 +1,27 @@
+.navbar {
+    background-color: rgb(0, 81, 255); 
+}
+
+.navbar-inner {
+    display: flex; 
+    align-self: flex-end;
+}
+
+.navbar-inner li {
+    list-style-type: none;
+}
+
+.navbar-inner a {
+    color: #fff; 
+    text-decoration: none; 
+}
+
+.navbar-inner a:hover {
+    text-decoration: underline;
+    background-color: var(--light-dark-blue);
+}
+
+.active-class {
+    background-color: var(--light-dark-blue);
+}
+

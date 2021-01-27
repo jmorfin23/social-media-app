@@ -26,9 +26,12 @@ app.get('*', (req, res) => {
   // ___ Find all data needed to be loaded ___ 
 
   // matchRoutes returns an array of components about to be rendered
-  const promises = matchRoutes(Routes, req.path).map(({ route }) => {
+  const promises = matchRoutes(Routes, req.path).map(({ route, match }) => {
+    console.log('inside match routes'); 
+    console.log(match); 
+    
     // If route has a loadData function: call it 
-    return route.loadData ? route.loadData(store) : null; 
+    return route.loadData ? route.loadData(store, match) : null; 
   }).map(promise => {
     if (promise) {
       return new Promise((resolve, reject) => {

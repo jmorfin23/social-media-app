@@ -1,22 +1,23 @@
 import React from 'react'; 
+import './index.css'; 
+import '../../app.css'; 
 import { connect } from 'react-redux'; 
-import { Link } from 'react-router-dom';  
+import { Link, NavLink } from 'react-router-dom';  
 
 const Header = ({ auth }) => {
     const authButton = auth ? (
-        <a href="/api/logout">Logout</a>
+        <a className="pad-1" href="/api/logout">Logout</a>
     ) : (
-        <a href="/api/auth/google">Login</a>
+        <a className="pad-1" href="/api/auth/google">Login</a>
     ); 
 
     return(
-        <nav>
-            <h1>Header</h1>
-            <div>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/about">about</Link></li>
-                <li><Link to="/admins">Admins</Link></li>
-                <li>{authButton}</li>
+        <nav className="navbar fw-200">
+            <div className="navbar-inner">
+                <NavLink className="pad-1" activeClassName="active-class" exact to="/">Home</NavLink>
+                <NavLink className="pad-1" activeClassName="active-class" to="/about">About</NavLink>
+                <NavLink className="pad-1" activeClassName="active-class" to="/admins">Admins</NavLink> 
+                {authButton}
             </div>
         </nav>
     )

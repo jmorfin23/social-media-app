@@ -6,11 +6,10 @@ const HomePage = loadable(() => import('./views/homePageView'));
 const AboutPage = loadable(() => import('./views/aboutPageView'));
 const NotFoundPage = loadable(() => import('./components/not-found')); 
 const AdminPageView = loadable(() => import('./views/adminPageView'));
+const ProfileView = loadable(() => import('./views/profilePageView')); 
 
 // Must load actions separately due to incompatibility with @loadable/component
-import { loadAdminData } from './views/adminPageView/load-data'; 
-import { loadAboutData } from './views/aboutPageView/load-data';  
-
+import { loadAdminData, loadAboutData, loadProfileData } from './load-data'; 
 
 export default [
     {
@@ -30,6 +29,11 @@ export default [
                 component: AdminPageView,
                 loadData: loadAdminData,
                 path: '/admins'
+            },
+            {
+                component: ProfileView, 
+                path: '/profile/:user', 
+                loadData: loadProfileData
             },
             {
                 component: NotFoundPage, 
