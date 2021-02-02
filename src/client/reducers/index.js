@@ -1,11 +1,15 @@
 import React from 'react'; 
+
+// Redux 
 import { combineReducers } from 'redux';
-import userReducer from './users'; 
-import authReducer from './authReducer'; 
-import adminReducer from './adminsListReducer'; 
+
+// Reducers 
+import userReducer from './userReducer'; 
+import profileReducer from './profileReducer';
+import uiReducer from './uiReducer';  
 
 export default combineReducers({
-    users: userReducer, 
-    auth: authReducer, 
-    admins: adminReducer
+    user: userReducer, 
+    profile: profileReducer, 
+    UI: uiReducer
 }); 

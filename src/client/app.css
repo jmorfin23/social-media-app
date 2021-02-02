@@ -24,6 +24,19 @@ body {
     --shaded-white: #fafafa;
 }
 
+/*  General  */ 
+
+.centered {
+    text-align: center;
+}
+
+.flexed {
+    display: flex; 
+}
+
+
+
+
 /*    Padding    */ 
 .pad-1 {
     padding: 1rem; 
@@ -41,6 +54,10 @@ body {
 
 .marlr-1 {
     margin: 0 1rem; 
+}
+
+.mt-2 {
+    margin-top: 2rem;
 }
 
 

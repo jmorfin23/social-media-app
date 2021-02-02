@@ -4,25 +4,33 @@ import '../../app.css';
 import { connect } from 'react-redux'; 
 import { Link, NavLink } from 'react-router-dom';  
 
-const Header = ({ auth }) => {
+const Header = ({auth}) => {
     const authButton = auth ? (
-        <a className="pad-1" href="/api/logout">Logout</a>
+        <a className="pad-1" href="/logout">Logout</a>
     ) : (
-        <a className="pad-1" href="/api/auth/google">Login</a>
+        <a className="pad-1" href="/login">Login</a>
     ); 
 
     return(
         <nav className="navbar fw-200">
             <div className="navbar-inner">
-                <NavLink className="pad-1" activeClassName="active-class" exact to="/">Home</NavLink>
-                <NavLink className="pad-1" activeClassName="active-class" to="/about">About</NavLink>
-                <NavLink className="pad-1" activeClassName="active-class" to="/admins">Admins</NavLink> 
-                {authButton}
+                {auth ? (
+                    <>
+                        <NavLink className="pad-1" activeClassName="active-class" exact to="/">Home</NavLink>
+                        <NavLink className="pad-1" activeClassName="active-class" exact to="/logout">Logout</NavLink>
+                    </>
+                ) : (
+                    <>
+                        <NavLink className="pad-1" activeClassName="active-class" exact to="/login">Login</NavLink>
+                        <NavLink className="pad-1" activeClassName="active-class" exact to="/register">Sign Up</NavLink>
+                    </>
+                )
+                }
             </div>
         </nav>
     )
 }; 
 
-const mapStateToProps = ({ auth }) => ({ auth }); 
+const mapStateToProps = state => (state.user)
 
 export default connect(mapStateToProps)(Header); 

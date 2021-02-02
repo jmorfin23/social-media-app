@@ -12,12 +12,13 @@ const PORT = process.env.PORT || 3000;
 const app = express(); 
 
 // Proxy all '/api' requests, send them to api server 
-app.use('/api', proxy('http://react-ssr-api.herokuapp.com', {
+app.use('/api', proxy('http://localhost:5001/', {
   proxyReqOptDecorator(opts) {
     opts.headers['x-forwarded-host'] = 'localhost:3000'; 
     return opts; 
   }
 })); 
+
 app.use(bodyParser.json()); 
 app.use(express.static("dist/public"));
 
@@ -27,8 +28,6 @@ app.get('*', (req, res) => {
 
   // matchRoutes returns an array of components about to be rendered
   const promises = matchRoutes(Routes, req.path).map(({ route, match }) => {
-    console.log('inside match routes'); 
-    console.log(match); 
     
     // If route has a loadData function: call it 
     return route.loadData ? route.loadData(store, match) : null; 

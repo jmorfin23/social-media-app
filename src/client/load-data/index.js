@@ -1,12 +1,14 @@
-import { fetchUsers, fetchAdminsList, fetchUser } from '../actions'; 
+import { fetchUserData } from '../actions'; 
 
 
-// ___ About View data call ___ // 
-export const loadAboutData = ({ dispatch }) => dispatch(fetchUsers()); 
+// // ___ About View data call ___ // 
+// export const loadAboutData = ({ dispatch }) => dispatch(fetchUsers()); 
 
 
-// ___ Admin View data call ___ // 
-export const loadAdminData = ({ dispatch }) => dispatch(fetchAdminsList())
+// // ___ Admin View data call ___ // 
+// export const loadAdminData = ({ dispatch }) => dispatch(fetchAdminsList())
 
-export const loadProfileData = ({ dispatch }, { params }) => dispatch(fetchUser(params.user));
+
+// __ Loading Profile call __ // 
+export const loadProfileData = ({ dispatch }, { params }) => dispatch(fetchUserData(params.user));
  
