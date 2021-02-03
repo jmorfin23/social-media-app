@@ -22,8 +22,11 @@ const preloadedState = window.__PRELOADED_STATE__
 // Allow the passed state to be garbage-collected
 delete window.__PRELOADED_STATE__
 
+// Redux dev tools 
+const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
+
 // Create Redux store with initial state
-const store = createStore(reducers, preloadedState, applyMiddleware(thunk.withExtraArgument(axiosInstance))); 
+const store = createStore(reducers, preloadedState, composeEnhancers(applyMiddleware(thunk.withExtraArgument(axiosInstance)))); 
 
 loadableReady(() => {
     ReactDOM.hydrate(

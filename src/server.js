@@ -23,7 +23,8 @@ app.use(bodyParser.json());
 app.use(express.static("dist/public"));
 
 app.get('*', (req, res) => {
-  const store = createStore(req); 
+  const store = createStore(req);
+
   // ___ Find all data needed to be loaded ___ 
 
   // matchRoutes returns an array of components about to be rendered
@@ -31,6 +32,8 @@ app.get('*', (req, res) => {
     
     // If route has a loadData function: call it 
     return route.loadData ? route.loadData(store, match) : null; 
+
+    // Resolve all promises 
   }).map(promise => {
     if (promise) {
       return new Promise((resolve, reject) => {
@@ -44,12 +47,11 @@ app.get('*', (req, res) => {
     const context = {}; 
     const content = renderer(req, store, context); 
 
-    if (context.url) {
-      return res.redirect(301, context.url); 
-    }
-    if (context.notFound) {
-      res.status(404); 
-    }; 
+    // Redirect to new url for unauthorized routes
+    if (context.url) return res.redirect(301, context.url); 
+    else if (context.notFound) res.status(404); 
+
+    // Send markup 
     res.send(content);
   }); 
 }); 

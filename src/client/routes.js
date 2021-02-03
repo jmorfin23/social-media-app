@@ -2,12 +2,13 @@ import React from 'react';
 import App from './App'; 
 import loadable from '@loadable/component';
 
-const HomePage = loadable(() => import('./views/homePageView')); 
-// const AboutPage = loadable(() => import('./views/aboutPageView'));
-const NotFoundPage = loadable(() => import('./components/not-found')); 
-// const AdminPageView = loadable(() => import('./views/adminPageView'));
-const ProfileView = loadable(() => import('./views/profilePageView')); 
-const LoginView = loadable(() => import('./views/loginPageView')); 
+// Page Views 
+const Home = loadable(() => import('./views/home')); 
+const NotFound = loadable(() => import('./components/not-found')); 
+const Profile = loadable(() => import('./views/profile')); 
+const Login = loadable(() => import('./views/login')); 
+const Register = loadable(() => import('./views/register'))
+
 // Must load actions separately due to incompatibility with @loadable/component
 import { loadProfileData } from './load-data'; 
 
@@ -16,21 +17,25 @@ export default [
         ...App, 
         routes: [
             {
-                component: HomePage, 
+                component: Home, 
                 path: '/', 
                 exact: true
             }, 
             {
-                component: ProfileView, 
+                component: Profile, 
                 path: '/profile/:user', 
                 loadData: loadProfileData
             },
             {
-                component: LoginView, 
+                component: Login, 
                 path: '/login'
             },
             {
-                component: NotFoundPage, 
+                component: Register, 
+                path: '/register'
+            },
+            {
+                component: NotFound, 
                 path: ""
             }
         ]

@@ -1,6 +1,9 @@
 import React from 'react'; 
 import { Helmet } from 'react-helmet-async'; 
 
+// HOC 
+import authRoute from '../../components/hocs/requireAuth'; 
+
 const HomePage = props => {
     return(
         <div className="homepage">
@@ -12,6 +15,6 @@ const HomePage = props => {
     )
 };
 
-export default HomePage; 
+export default authRoute(HomePage); 
 
  

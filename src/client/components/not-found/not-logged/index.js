@@ -1,12 +1,11 @@
 import React from "react";
-import "./index.css";
+import "../index.css";
 
 export default  ({ staticContext = {} }) => {
-  staticContext.notFound = true;  
+  staticContext.notAuthorized = true;  
     return (
       <section className="error-message">
-        <h1 className="error-code">404</h1>
-        <p className="error-description">Page not found</p>
+        <p className="error-description">You are not authorized to view this page.</p>
         <a href="/login" className="error-link">
           Go to login
         </a>

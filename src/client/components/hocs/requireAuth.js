@@ -9,17 +9,14 @@ export default (ChildComponent) => {
     class RequireAuth extends Component {
         render() {
             switch(this.props.auth) {
-                case false: 
-                    return <Redirect to="/"/>
-                case null: 
-                    return <div>...Loading</div>
+                case true: 
+                    return <ChildComponent {...this.props}/>
                 default: 
-                    return <ChildComponent {...this.props}/> 
-
+                    return <Redirect to="/login"/>
             }
         }
     }
 
-    const mapStateToProps = ({ auth }) => ({ auth }); 
+    const mapStateToProps = state => (state.user); 
     return connect(mapStateToProps)(RequireAuth);
 }; 

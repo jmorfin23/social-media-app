@@ -35,9 +35,27 @@ body {
 }
 
 
+/* Forms */
+.form {
+    display: flex; 
+    width: 350px; 
+    margin: 0 auto; 
+    flex-flow: column;
+}
+
+.form-item {
+    flex: 1; 
+    display: flex; 
+    flex-flow: column;
+    text-align: left;
+}
+
 
 
 /*    Padding    */ 
+.pad-05 {
+    padding: .5rem; 
+}
 .pad-1 {
     padding: 1rem; 
 }
@@ -54,6 +72,15 @@ body {
 
 .marlr-1 {
     margin: 0 1rem; 
+}
+
+/*    Margin-top    */ 
+.mt-05 {
+    margin-top: .5rem;
+}
+
+.mt-1 {
+    margin-top: 1rem;
 }
 
 .mt-2 {
