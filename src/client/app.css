@@ -19,6 +19,8 @@ body {
     --green: #54B689;
     --white: #fff; 
     --black: #000; 
+    --blue: rgb(0, 81, 255);
+    --red: rgba(255, 0, 0); 
     --dark-blue: rgb(50, 53, 80); 
     --light-dark-blue: rgba(50, 53, 80, 0.3); 
     --shaded-white: #fafafa;
@@ -34,6 +36,13 @@ body {
     display: flex; 
 }
 
+/* Button */
+.btn {
+    background-color: var(--blue);
+    color: var(--white); 
+    border-radius: 4px;
+    border: none; 
+}
 
 /* Forms */
 .form {
@@ -48,6 +57,15 @@ body {
     display: flex; 
     flex-flow: column;
     text-align: left;
+}
+
+.form-error {
+    color: var(--red);  
+}
+
+.form-error input {
+    outline: 1px solid var(--red); 
+    border: 1px solid var(--red); 
 }
 
 
@@ -74,6 +92,10 @@ body {
     margin: 0 1rem; 
 }
 
+.mtb-05 {
+    margin: .5rem 0; 
+}
+
 /*    Margin-top    */ 
 .mt-05 {
     margin-top: .5rem;
@@ -95,4 +117,18 @@ body {
 }
 .fw-300 {
     font-weight: 300;
+}
+
+.fw-400 {
+    font-weight: 400;
+}
+
+.fs-09 {
+    font-size: .8rem;
+}
+.fs-1 {
+    font-size: 1rem;
+}
+.fs-15 {
+    font-size: 1.5rem;
 }

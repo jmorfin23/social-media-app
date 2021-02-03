@@ -34,11 +34,8 @@ export const loginUser = (userInfo, history) => async(dispatch, getState, api) =
         // Push to home page 
         history.push('/'); 
     } catch(err) {
-        console.log(err); 
-        console.log(err.response)
-
-        // set errors TODO: 
-        // dispatch({ type: SET_ERRORS, payload: err.response.data }); 
+        console.log('there is an error'); 
+        dispatch({ type: SET_ERRORS, payload: err.response.data }); 
     }
 
 }
