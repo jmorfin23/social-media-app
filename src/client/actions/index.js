@@ -1,4 +1,4 @@
-import { LOGIN_USER, LOADING_START, CLEAR_ERRORS, SET_ERRORS } from './types'; 
+import { LOGIN_USER, LOADING_START, CLEAR_ERRORS, SET_ERRORS, REGISTER_USER } from './types'; 
 
 // action creator to fetch current user
 export const authCurrentUser = () => async (dispatch, getState, api) => {
@@ -29,12 +29,11 @@ export const loginUser = (userInfo, history) => async(dispatch, getState, api) =
         // Clear any errors and set loading false
         dispatch({ type: CLEAR_ERRORS }); 
 
-        // Call user data from component
+        // Call user data from component OR HERE
 
         // Push to home page 
         history.push('/'); 
     } catch(err) {
-        console.log('there is an error'); 
         dispatch({ type: SET_ERRORS, payload: err.response.data }); 
     }
 
@@ -42,9 +41,24 @@ export const loginUser = (userInfo, history) => async(dispatch, getState, api) =
 
 
 // __ Register New User ___ // 
-export const registerUser = (userInfo, history) => async(dispatch, getState, api) => {
-    // ... 
+export const registerUser = (newUserInfo, history) => async(dispatch, getState, api) => {
 
+    // SET LOADING 
+    dispatch({ type: LOADING_START }); 
+
+    try {
+        const res = await api.post('/register', newUserInfo);
+
+        dispatch({ type: LOGIN_USER }); 
+        // Clear any errors and set loading false
+        dispatch({ type: CLEAR_ERRORS }); 
+        
+        // Push to home page 
+        history.push('/'); 
+
+    } catch(err) {
+        dispatch({ type: SET_ERRORS, payload: err.response.data }); 
+    }
 }
 
 

@@ -10,3 +10,6 @@ export const REGISTER_USER = "REGISTER_USER";
 export const SET_ERRORS = "SET_ERRORS"; 
 export const LOADING_START = "LOADING_START";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";  
+
+// PROIFLE 
+export const FETCH_PROFILE = "FETCH_PROFILE"; 
